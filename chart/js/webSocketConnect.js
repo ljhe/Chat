@@ -1,6 +1,6 @@
 //  建立 webSocket 连接
 $(function () {
-    var url = "ws://47.102.154.146:8811";
+    var url = "ws://47.102.131.167:8811";
     window.webSocket = new WebSocket(url);
     console.log(webSocket);
 

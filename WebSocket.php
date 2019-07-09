@@ -67,7 +67,8 @@ class WebSocket {
     private function param($data,$fd,$frame_fd)
     {
         $data = json_decode($data);
-        $fd == $frame_fd ? $data->type = 0 : $data->type = 1;
+        $fd == $frame_fd ? $data->status = 0 : $data->status = 1;
+        $data->time = date('Y-m-d H:i:s', time());
         return json_encode($data);
     }
 }
