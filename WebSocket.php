@@ -2,6 +2,9 @@
 /**
  * Class WebSocket
  */
+
+require "DoRedis.php";
+
 class WebSocket {
 
     const HOST = '0.0.0.0';     // 监听的 IP 地址, 0.0.0.0 表示监听所有地址
@@ -25,6 +28,8 @@ class WebSocket {
      */
     public function onOpen($serv, $request)
     {
+        $redis = new DoRedis();
+        $redis->test();
         echo "server: handshake success with fd{$request->fd}\n";
     }
 
