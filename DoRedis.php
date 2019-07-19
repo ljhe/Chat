@@ -10,18 +10,59 @@ require "HelperRedis.php";
 
 class DoRedis
 {
-
+    private static $doRedis;
     private $redis;
 
-    public function __construct()
+    /**
+     * 返回一个 doRedis 类的对象
+     * @return DoRedis
+     */
+    public static function getRedis()
+    {
+        if (!self::$doRedis instanceof self) {
+            self::$doRedis = new self;
+        }
+        return self::$doRedis;
+    }
+
+    /**
+     * 连接 redis
+     * DoRedis constructor.
+     */
+    private function __construct()
     {
         $this->redis = HelperRedis::getRedisConn();
     }
 
-    public function test()
+    /**
+     * key 存在时删除 key
+     * @param $key
+     * @return int
+     */
+    public function del($key)
     {
-        //$this->redis->set('test','2');
-        $val = $this->redis->get('test');
-        echo $val.PHP_EOL;
+        return $this->redis->del($key);
+    }
+
+    /**
+     * 向一个 redis 集合中插入数据
+     * @param $key
+     * @param $value
+     * @return int
+     */
+    public function sAdd($key, $value)
+    {
+        return $this->redis->sAdd($key, $value);
+    }
+
+    /**
+     * 将某个值从 redis 集合中移除
+     * @param $key
+     * @param $value
+     * @return int
+     */
+    public function sRem($key, $value)
+    {
+        return $this->redis->sRem($key, $value);
     }
 }

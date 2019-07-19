@@ -28,8 +28,8 @@ class WebSocket {
      */
     public function onOpen($serv, $request)
     {
-        $redis = new DoRedis();
-        $redis->test();
+        //  当连接成功的时候将用户信息保存到 redis 的集合中
+        DoRedis::getRedis()->sAdd('userList', $request->fd);
         echo "server: handshake success with fd{$request->fd}\n";
     }
 
@@ -59,6 +59,8 @@ class WebSocket {
      */
     public function onClose($serv, $fd)
     {
+        //  当连接断开的时候将用户信息从 redis 的集合中移除
+        DoRedis::getRedis()->sRem('userList', $fd);
         echo "client {$fd} closed\n";
     }
 
