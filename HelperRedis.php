@@ -36,7 +36,7 @@ class HelperRedis {
 
     /**
      * 连接redis的私有化方法
-     * @return $redis_ocean
+     * @return redis
      */
     private static function connRedis()
     {

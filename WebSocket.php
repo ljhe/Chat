@@ -15,10 +15,23 @@ class WebSocket {
     {
         $this->serv = new Swoole\WebSocket\Server(self::HOST, self::PORT);
 
+        $this->serv->on('start', array($this, 'onStart'));
         $this->serv->on('open', array($this, 'onOpen'));
         $this->serv->on('message', array($this, 'onMessage'));
         $this->serv->on('close', array($this, 'onClose'));
         $this->serv->start();
+    }
+
+    /**
+     * 连接成功时的回调方法
+     */
+    public function onStart()
+    {
+        //  创建一个新的协程,并立即执行; go 相当于 Swoole\Coroutine::create
+        go(function (){
+            DoRedis::getRedis()->del('userList');
+        });
+        echo 'start success';
     }
 
     /**
