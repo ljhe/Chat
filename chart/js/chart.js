@@ -1,13 +1,23 @@
 window.chart = {};
 chart.append = function (data) {
-    var data = JSON.parse(data);
+    if (typeof parseInt(data) === 'number') {
+        //  修改当前在线人数
+        $('#onlineNum').text(data);
+    }else{
+        var data = JSON.parse(data);
+    }
+    //  type 为1时发送文本消息
     if (data.type === 1) {
         chart.addMessage(data.status, data.time, data.textContent, data.type);
         //发送后清空输入框
         $(".div-textarea").html("");
-    }else if (data.type === 2) {
+    }
+    //  type 为2时发送表情消息
+    else if (data.type === 2) {
         chart.addMessage(data.status, data.time, data.textContent, data.type);
-    }else if (data.type === 3) {
+    }
+    //  type 为3时发送图片消息
+    else if (data.type === 3) {
         chart.addMessage(data.status, data.time, data.textContent, data.type);
     }
 

@@ -65,4 +65,14 @@ class DoRedis
     {
         return $this->redis->sRem($key, $value);
     }
+
+    /**
+     * 返回集合中元素的数量
+     * @param $key
+     * @return int
+     */
+    public function sCard($key)
+    {
+        return $this->redis->sCard($key);
+    }
 }
