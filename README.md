@@ -2,5 +2,5 @@
 
 - csdn地址：[https://blog.csdn.net/ljh243581579/article/details/94878421](https://blog.csdn.net/ljh243581579/article/details/94878421)
 
-- 第一版效果图：
+- 第一版效果图（GIF图加载较慢）：
 ![](https://img-blog.csdnimg.cn/20190706175449700.gif)
