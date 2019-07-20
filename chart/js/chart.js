@@ -1,11 +1,12 @@
 window.chart = {};
 chart.append = function (data) {
-    if (typeof parseInt(data) === 'number') {
+    var data = JSON.parse(data);
+    if (typeof (data) === 'number') {
         //  修改当前在线人数
         $('#onlineNum').text(data);
-    }else{
-        var data = JSON.parse(data);
+        return;
     }
+
     //  type 为1时发送文本消息
     if (data.type === 1) {
         chart.addMessage(data.status, data.time, data.textContent, data.type);
