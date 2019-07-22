@@ -10,6 +10,9 @@
 class DoPush
 {
     private static $push;
+    
+    private function __construct(){}
+    private function __clone(){}
 
     /**
      * 单例类
