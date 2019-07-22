@@ -30,7 +30,7 @@ class WebSocket {
     {
         //  创建一个新的协程,并立即执行; go 相当于 Swoole\Coroutine::create
         go(function (){
-            //  下面开启的话会在下方有一个警告 fd[0] is invalid
+            //  demo 中重启的时候删除 redis 中的用户信息
             DoRedis::getRedis()->del('userList');
         });
         echo 'start success';
